@@ -1,12 +1,27 @@
 module FunWithStrings
   def palindrome?
-    # your code here
+    tst_str = self.gsub(/\W/, "")
+    tst_str.downcase == tst_str.downcase.reverse
   end
+
+
   def count_words
-    # your code here
+    res = {} 
+    self.downcase.gsub(/\W/, " ").split.each {|str|
+      if res.has_key?(str)
+        res[str] = res [str] + 1
+      else
+        res[str] = 1
+      end
+    }
+    return res
   end
+
   def anagram_groups
-    # your code here
+    # http://stackoverflow.com/questions/9646995/ruby-way-to-group-anagrams-in-string-array
+    self.split.group_by do |element|
+      element.downcase.chars.sort
+    end.values
   end
 end
 
